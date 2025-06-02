@@ -3,6 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Informe de Historial Automotor - Veriauto</title>
+  
+  
+	  <!-- html2pdf.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+	<style>
+	  .top-bar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 20px;
+	  }
+
+	  .top-bar img {
+		height: 60px;
+	  }
+
+	  .download-btn {
+		background-color: #b3d4fc;
+		border: none;
+		padding: 10px 20px;
+		font-size: 14px;
+		color: #1f3c88;
+		border-radius: 5px;
+		cursor: pointer;
+	  }
+
+	  .no-print {
+		display: none;
+	  }
+	</style>
+
+  
+  
+  
+  
+  
+  
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -47,6 +84,46 @@
 </head>
 <body>
 
+
+
+
+
+<script>
+  function downloadPDF() {
+    const reportElement = document.getElementById("reporte");
+    const opt = {
+      margin:       0.5,
+      filename:     'informe-vehiculo.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(reportElement).save();
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="top-bar">
+  <img src="logo.png" alt="Logo Veriauto" id="logo">
+  <button class="download-btn" onclick="downloadPDF()">Descargar PDF</button>
+</div>
+
+
+
+<div id="reporte">
+  <!-- everything from <div class="header"> to <footer> stays inside here -->
 
 
 <div style="
@@ -235,6 +312,10 @@
   <footer>
     <p style="font-size: small; color: #999;">Este informe ha sido generado por Veriauto. La información se brinda con fines informativos sin garantía de precisión legal.</p>
   </footer>
+
+</div>
+
+
 
 </body>
 </html>

@@ -29,7 +29,7 @@ Iniciar sesión
   height: 50px; 
   z-index: 10;
 ">
-  <form style="display: flex; flex-direction: row; gap: 10px;" onsubmit="handleSubmit(event)" >
+  <form style="display: flex; flex-direction: row; gap: 10px;" onsubmit="handleSubmit(event)">
     <input 
       type="text" 
       name="vin" 
@@ -71,15 +71,18 @@ Iniciar sesión
 
 
 
-<script>
-  function handleSubmit(event) {
-    event.preventDefault();
-    const vin = document.getElementById('vinInput').value.trim();
-    if (vin) {
-      window.location.href = `report.html?vin=${encodeURIComponent(vin)}`;
-    }
+<<script>
+function handleSubmit(event) {
+  event.preventDefault(); // prevent default form submission
+  const vin = event.target.vin.value.trim();
+
+  if (vin) {
+    const url = `report.html?vin=${encodeURIComponent(vin)}`;
+    window.open(url, '_blank');
   }
+}
 </script>
+
 
 
 
