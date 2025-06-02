@@ -41,16 +41,64 @@
       margin: 10px 0;
     }
   </style>
+  
+
+  
 </head>
 <body>
 
+
+
+<div style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 80px;
+  color: rgba(255, 0, 0, 0.15);
+  font-weight: bold;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+">
+  EJEMPLO
+</div>
+
+
+
+
+
   <div class="header">
     <h1>Veriauto - Informe de Historial Automotor</h1>
-    <p><strong>Fecha:</strong> 05 de Mayo de 2025</p>
-    <p><strong>Hora:</strong> 20:14</p>
+    <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+    <p><strong>Hora:</strong> <span id="hora"></p>
     <p><strong>Informe Nº:</strong> 0009508421</p>
     <p><strong>Tipo:</strong> Premium</p>
   </div>
+  
+  <script>
+  const fechaElem = document.getElementById('fecha');
+  const horaElem = document.getElementById('hora');
+
+  const now = new Date();
+
+  // Format date in Spanish: 05 de Mayo de 2025
+  const opcionesFecha = { day: '2-digit', month: 'long', year: 'numeric' };
+  const fechaFormateada = now.toLocaleDateString('es-ES', opcionesFecha);
+
+  // Format time: 20:14
+  const opcionesHora = { hour: '2-digit', minute: '2-digit', hour12: false };
+  const horaFormateada = now.toLocaleTimeString('es-ES', opcionesHora);
+
+  if (fechaElem) fechaElem.textContent = fechaFormateada;
+  if (horaElem) horaElem.textContent = horaFormateada;
+</script>
+
+  
+  
+  
+  
+  
 
   <div class="section">
     <h2>Detalles del Vehículo</h2>
@@ -59,13 +107,26 @@
       <tr><th>Modelo</th><td>XSARA SX 1.9TD</td></tr>
       <tr><th>Año</th><td>2000</td></tr>
       <tr><th>Tipo</th><td>SEDAN 5 PUERTAS</td></tr>
-      <tr><th>Patente</th><td>DFQ187</td></tr>
+      <tr><th>Patente</th><td id="vinCell">DFQ187</td></tr>
       <tr><th>Nº de Motor</th><td>10CUJW3069631</td></tr>
       <tr><th>Nº de Chasis</th><td>VF7N1DHYF36725008</td></tr>
       <tr><th>Peso (kg)</th><td>1152</td></tr>
       <tr><th>Origen</th><td>IMPORTADO</td></tr>
     </table>
   </div>
+  
+  
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  const vin = params.get('vin');
+  const cell = document.getElementById('vinCell');
+
+  if (vin && cell) {
+    cell.textContent = vin.toUpperCase();;
+  }
+</script>
+  
+  
 
   <div class="section">
     <h2>Situación Registral</h2>
